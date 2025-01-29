@@ -1,12 +1,31 @@
 """
-Optuna example that optimizes a binary classifier configuration for a digits dataset
-using XGBoost. The digits dataset consists of 8x8 pixel images of handwritten digits.
+This example demonstrates using Optuna to optimize an XGBoost binary classifier 
+for a challenging computer vision task using the classic digits dataset. The 
+project showcases both hyperparameter tuning and model selection optimization 
+in a real-world scenario. 
 
-In this example, we optimize a classifier for detecting whether given digits are below 6 or not
-using XGBoost. For example digit 5 is below 6. 
+The digits dataset contains 8x8 grayscale images of 
+handwritten numbers (0-9). We create an intentionally challenging 
+classification problem by: 
 
-We optimize both the choice of booster model and its
-hyperparameters.
+- Selecting only digits 3-9 to create class imbalance
+- Converting it to a binary task: classifying digits as either "high" (6-9) or 
+"medium" (3-5)
+
+The optimization process explores multiple XGBoost architectures (gbtree, 
+gblinear, and dart boosters) while simultaneously tuning their hyperparameters. 
+Key optimized parameters include:
+
+- Tree structure (depth, child weights, growth policies)
+- Regularization (L1/L2)
+- Sampling strategies
+- Learning rates
+- DART-specific parameters when applicable
+
+This example demonstrates how Optuna can efficiently navigate a complex, 
+conditional parameter space where some hyperparameters only apply to certain 
+model types. The optimization aims to maximize classification accuracy while 
+handling the inherent challenges of computer vision data.
 
 """
 
